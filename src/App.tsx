@@ -1,27 +1,33 @@
-import { useGetPostsQuery } from './services/postService';
+import { Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 import './App.css';
+import HomePage from './components/pages/HomePage';
+import PostsPage from './components/pages/PostsPage';
+import PostDetail from './components/PostDetail';
 
 function App() {
-  const { data, error, isLoading } = useGetPostsQuery();
-
-  if (error) return <div>ERROR: {error}</div>;
-
-  if (isLoading) return <div>Loading...</div>;
-
-  if (data)
-    return (
-      <div>
+  return (
+    <Router>
+      <div className="App">
         <ul>
-          {data.map((post) => (
-            <li key={post.id}>
-              {post.id}. [{post.author}] {post.title}
-            </li>
-          ))}
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/posts">Posts</Link>
+          </li>
         </ul>
-      </div>
-    );
 
-  return <div className="App"></div>;
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/posts" element={<PostsPage />} />
+          <Route path="/posts/:postId" element={<PostDetail />} />
+        </Routes>
+      </div>
+      ;
+    </Router>
+  );
 }
 
 export default App;
