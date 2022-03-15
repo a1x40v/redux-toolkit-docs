@@ -5,6 +5,7 @@ import './App.css';
 import HomePage from './components/pages/HomePage';
 import PostsPage from './components/pages/PostsPage';
 import PostDetail from './components/PostDetail';
+import PostCachingList from './components/PostsCaching/PostCachingList';
 
 function App() {
   return (
@@ -17,12 +18,16 @@ function App() {
           <li>
             <Link to="/posts">Posts</Link>
           </li>
+          <li>
+            <Link to="/posts-caching">Caching</Link>
+          </li>
         </ul>
 
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/posts" element={<PostsPage />} />
           <Route path="/posts/:postId" element={<PostDetail />} />
+          <Route path="/posts-caching" element={<PostCachingList />} />
         </Routes>
       </div>
       ;
