@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useGetPostsQuery } from './services/postService';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const { data, error, isLoading } = useGetPostsQuery();
+
+  if (error) return <div>ERROR: {error}</div>;
+
+  if (isLoading) return <div>Loading...</div>;
+
+  if (data)
+    return (
+      <div>
+        <ul>
+          {data.map((post) => (
+            <li key={post.id}>
+              {post.id}. [{post.author}] {post.title}
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+
+  return <div className="App"></div>;
 }
 
 export default App;
