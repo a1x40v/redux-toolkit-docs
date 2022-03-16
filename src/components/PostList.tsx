@@ -14,9 +14,12 @@ function PostList() {
         <ul>
           {data.map((post) => (
             <li key={post.id}>
-              <Link to={`/posts/${post.id}`}>
-                {post.id}. [{post.author}] {post.title}
-              </Link>
+              <span>
+                {post.id}. [{post.author}] {post.title} ---
+              </span>
+              <Link to={`/posts/${post.id}`}>View</Link>
+              <span> --- </span>
+              <Link to={`/edit/${post.id}`}>Edit</Link>
             </li>
           ))}
         </ul>

@@ -6,6 +6,7 @@ import HomePage from './components/pages/HomePage';
 import PostsPage from './components/pages/PostsPage';
 import PostDetail from './components/PostDetail';
 import PostCachingList from './components/PostsCaching/PostCachingList';
+import PostUpdatingPage from './components/PostUpdating/PostUpdatingPage';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/posts" element={<PostsPage />} />
           <Route path="/posts/:postId" element={<PostDetail />} />
           <Route path="/posts-caching" element={<PostCachingList />} />
+          <Route path="/edit/:postId" element={<PostUpdatingPage />} />
         </Routes>
       </div>
       ;
